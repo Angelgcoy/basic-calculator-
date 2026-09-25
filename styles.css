@@ -12,11 +12,19 @@ h1 {
     height: 300px;
     border: 1px solid black;
     display:flex;
-    flex-direction: column; 
+    flex-direction: column;
+    border-radius: 8px;
+    background-color: #696969; 
 }
 .screen {
-    width: 100%;
+    display: flex;
+    width: auto;
     height: 60px;
+    background-color: #64923F;
+    border-radius: 8px;
+    margin: 5px;
+    justify-content: flex-end;
+    align-items: end;
 }
 
 .buttons {
@@ -29,11 +37,13 @@ flex: 1;
 display: flex;
 flex-wrap:wrap;
 flex: 3;
+gap:2px
 }
 .number-buttons button{
-    flex:1 0 33.33%;
+    flex:1 0  25%;
     flex-direction:column;
-
+    margin: 2px;
+    
 }
 
 .action-buttons {
@@ -45,4 +55,10 @@ flex: 3;
 }
 .action-buttons button {
     flex:1;
+    background-color:#F19C13;
+}
+
+button {
+    border-radius: 4px;
+    border: none
 }
