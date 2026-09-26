@@ -50,13 +50,14 @@ const operatorsList = [addBtn,subtractBtn,divideBtn,multiplyBtn];
 const bothLists = [btnList,operatorsList];
 const allLists = bothLists.flat()
 
+
 //add display content
 const display = document.querySelector("p");
 
 let operation = [];
 
 
-allLists.forEach(button => {
+const action = allLists.forEach(button => {
     button.addEventListener("click", function()  {
         operation.push(button.textContent)
         display.textContent += button.textContent
@@ -64,7 +65,13 @@ allLists.forEach(button => {
     })
 })
 
-
+clearBtn.addEventListener("click", () => {
+    display.textContent = ""
+})
+deleteBtn.addEventListener("click", () => {
+display.textContent = display.textContent.slice(0, -1)
+})
+console.log(operation)
 
 
 
