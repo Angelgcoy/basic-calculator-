@@ -5,30 +5,24 @@ crear funcion para multiplicar
 crear funcion para dividir
 */
 
-const add = (a,b) => {
-    return a + b;
-}
-
-const subtract = (a,b) => { 
-    return a - b
-}
-
-const multiply = (a,b) => {
-    return a * b;
-}
-
-const divide = (a,b) => {
-    return a / b;
-}
+const add = (a,b) =>      { return a + b }
+const subtract = (a,b) => { return a - b}
+const multiply = (a,b) => { return a * b;}
+const divide = (a,b) =>   { return a / b; }
 
 const one = 1;
 const two = 2;
 
 //create a operate function which uses a operator and two numbers to execute
-const operate = (a,b,operator) => {
-    return operator(a,b);
+function operate(a,b,operator) {
+    if (operator === "+") {      return a + b; }
+    else if (operator === "-") { return a - b; }
+    else if (operator === "/") { return b === 0 ? "error" : a / b; }
+    else if (operator === "*") { return a * b; }
+    else {return null}
+
 }
-console.log(operate(one,two,add))
+
 //add operator buttons
 const addBtn      = document.querySelector("#btn-add");
 const subtractBtn = document.querySelector("#subtract");
@@ -52,6 +46,36 @@ const zeroBtn    = document.querySelector("#zero");
 const decimalBtn = document.querySelector("#decimal");
 //a list of the buttons
 const btnList = [oneBtn,twoBtn,threeBtn,forBtn,fiveBtn,sixBtn,sevenBtn,eightBtn,nineBtn,zeroBtn,decimalBtn];
-const operatorsList = [addBtn,subtractBtn,divideBtn,multiplyBtn,operateBtn,deleteBtn,clearBtn];
+const operatorsList = [addBtn,subtractBtn,divideBtn,multiplyBtn];
+const bothLists = [btnList,operatorsList];
+const allLists = bothLists.flat()
 
-console.log(btnList,operatorsList)
+//add display content
+const display = document.querySelector("p");
+
+let operation = [];
+
+
+allLists.forEach(button => {
+    button.addEventListener("click", function()  {
+        operation.push(button.textContent)
+        display.textContent += button.textContent
+
+    })
+})
+
+
+
+
+
+
+//operateBtn.addEventListener("click", (e) => {
+  //  console.log(evaluate())
+//})
+
+
+
+
+    
+
+
