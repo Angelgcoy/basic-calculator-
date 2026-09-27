@@ -135,5 +135,13 @@ actualNumber = display.textContent;
 })
 
 
+/*ya lo que es formular el primer numero, el operador, el segundo numero, que haga la operacion y que se muestre
+en pantalla esta listo. ahora necesito es hacer que no se rompa por no usarlo bien
 
+-al momento de presionar resultado, si presiono un numero el resultado debe volerse el previousNumber
+no se debe poder seleccionar una operacion si no se ha seleccionado numero inicial
+el numero inicial debe ser 0 al momento de seleccionar clear o iniciar la pagina
+
+
+*/
 
