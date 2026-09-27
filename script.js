@@ -54,40 +54,67 @@ const allLists = bothLists.flat()
 //add display content
 const display = document.querySelector("p");
 
-
 let previousNumber = "";
 let actualNumber = "";
 let selectedOperator = null;
 
+ //store number pressed in first variable
 function pressNumber(number) {
+    if (selectedOperator === null) {
+
     actualNumber += number.textContent;
     display.textContent = actualNumber;
 };
+    }
 
+//store operator in variable
 function pressOperator(operator) {
+    if (selectedOperator === null) {
+
     selectedOperator = operator.textContent 
     display.textContent = selectedOperator
+    previousNumber = actualNumber
+    actualNumber = ""
+    console.log(selectedOperator)
+    };
 }
 
-const action = btnList.forEach(button => {
+//store actualnumber in previous number and store it
+function secondNumber(number) {
+    if (selectedOperator) {
+        actualNumber += number.textContent;
+        display.textContent = actualNumber
+        
+        console.log(previousNumber, "soy el anterior")
+    }
+
+}
+
+//first number click
+const setNumber = btnList.forEach(button => {
     button.addEventListener("click", () => {
         pressNumber(button)
-        console.log(actualNumber)
-    })
-})
+        secondNumber(button)
+        console.log(actualNumber, "am actual number")
+    });
+});
 
-const operator = operatorsList.forEach(button => {
+
+//operator click
+const operatorPress = operatorsList.forEach(button => {
     button.addEventListener("click", () => {
         pressOperator(button)
-        console.log(selectedOperator)
-    })
-})
+        
+        
+    });
+});
 
 //undo and clear action
 clearBtn.addEventListener("click", () => {
     display.textContent = "";
     actualNumber = "";
     previousNumber = "";
+    selectedOperator = null
 })
 deleteBtn.addEventListener("click", () => {
 
