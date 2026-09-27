@@ -54,35 +54,47 @@ const allLists = bothLists.flat()
 //add display content
 const display = document.querySelector("p");
 
-let operation = [];
 
+let previousNumber = "";
+let actualNumber = "";
+let selectedOperator = null;
 
-const action = allLists.forEach(button => {
-    button.addEventListener("click", function()  {
-        operation.push(button.textContent)
-        display.textContent += button.textContent
+function pressNumber(number) {
+    actualNumber += number.textContent;
+    display.textContent = actualNumber;
+};
 
+function pressOperator(operator) {
+    selectedOperator = operator.textContent 
+    display.textContent = selectedOperator
+}
+
+const action = btnList.forEach(button => {
+    button.addEventListener("click", () => {
+        pressNumber(button)
+        console.log(actualNumber)
     })
 })
 
+const operator = operatorsList.forEach(button => {
+    button.addEventListener("click", () => {
+        pressOperator(button)
+        console.log(selectedOperator)
+    })
+})
+
+//undo and clear action
 clearBtn.addEventListener("click", () => {
-    display.textContent = ""
+    display.textContent = "";
+    actualNumber = "";
+    previousNumber = "";
 })
 deleteBtn.addEventListener("click", () => {
-display.textContent = display.textContent.slice(0, -1)
+
+display.textContent = display.textContent.slice(0, -1);
+actualNumber = display.textContent;
 })
-console.log(operation)
+console.log(operate(1,2,"+"))
 
-
-
-
-//operateBtn.addEventListener("click", (e) => {
-  //  console.log(evaluate())
-//})
-
-
-
-
-    
 
 
