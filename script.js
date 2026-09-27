@@ -15,7 +15,7 @@ const two = 2;
 
 //create a operate function which uses a operator and two numbers to execute
 function operate(a,b,operator) {
-    if (operator === "+") {      return a + b; }
+    if (operator === "+") {      return Number(a) + Number(b); }
     else if (operator === "-") { return a - b; }
     else if (operator === "/") { return b === 0 ? "error" : a / b; }
     else if (operator === "*") { return a * b; }
@@ -86,9 +86,10 @@ function secondNumber(number) {
         display.textContent = actualNumber
         
         console.log(previousNumber, "soy el anterior")
-    }
+    };
 
-}
+};
+
 
 //first number click
 const setNumber = btnList.forEach(button => {
@@ -109,6 +110,17 @@ const operatorPress = operatorsList.forEach(button => {
     });
 });
 
+operate(previousNumber,actualNumber,selectedOperator)
+console.log(operate)
+
+//result button 
+operateBtn.addEventListener("click", () => {
+    display.textContent = (operate(previousNumber,actualNumber,selectedOperator))
+
+    
+})
+
+
 //undo and clear action
 clearBtn.addEventListener("click", () => {
     display.textContent = "";
@@ -121,7 +133,7 @@ deleteBtn.addEventListener("click", () => {
 display.textContent = display.textContent.slice(0, -1);
 actualNumber = display.textContent;
 })
-console.log(operate(1,2,"+"))
+
 
 
 
