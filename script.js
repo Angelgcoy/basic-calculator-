@@ -54,7 +54,7 @@ const allLists = bothLists.flat()
 //add display content
 const display = document.querySelector("p");
 
-let previousNumber = "" ;
+let previousNumber = "0" ;
 let actualNumber = "" ;
 let selectedOperator = null;
 
@@ -76,7 +76,9 @@ function pressOperator(operator) {
     display.textContent = selectedOperator;
     actualNumber = "";
     console.log(selectedOperator);
-    };
+    
+ 
+};
 }
 
 //store actualnumber in previousnumber and store it

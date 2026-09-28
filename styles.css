@@ -16,16 +16,29 @@ h1 {
     border-radius: 8px;
     background-color: #696969; 
 }
-.display p{
+.display {
     display: flex;
     width: auto;
     height: 60px;
     background-color: #64923F;
     border-radius: 8px;
     margin: 5px;
-    justify-content: flex-end;
-    align-items: end;
+    flex-direction: column;
 }
+
+p {
+    display: flex;
+margin-top: 5px;
+margin-right: 5px;
+justify-content: end;
+width: auto;
+}
+ 
+.container .display .big-display{
+    font-size: 25px;
+    margin-bottom: 5px;
+}
+
 
 .buttons {
   display: flex;
