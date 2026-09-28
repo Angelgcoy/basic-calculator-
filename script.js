@@ -54,8 +54,8 @@ const allLists = bothLists.flat()
 //add display content
 const display = document.querySelector("p");
 
-let previousNumber = "";
-let actualNumber = "";
+let previousNumber = "" ;
+let actualNumber = "" ;
 let selectedOperator = null;
 
  //store number pressed in first variable
@@ -64,26 +64,27 @@ function pressNumber(number) {
 
     actualNumber += number.textContent;
     display.textContent = actualNumber;
+    previousNumber = actualNumber;
 };
     }
 
 //store operator in variable
 function pressOperator(operator) {
-    if (selectedOperator === null) {
-
-    selectedOperator = operator.textContent 
-    display.textContent = selectedOperator
-    previousNumber = actualNumber
-    actualNumber = ""
-    console.log(selectedOperator)
+    if (actualNumber >= 0) {
+        
+    selectedOperator = operator.textContent;
+    display.textContent = selectedOperator;
+    actualNumber = "";
+    console.log(selectedOperator);
     };
 }
 
-//store actualnumber in previous number and store it
+//store actualnumber in previousnumber and store it
 function secondNumber(number) {
-    if (selectedOperator) {
+      
+    if (selectedOperator ) {
         actualNumber += number.textContent;
-        display.textContent = actualNumber
+        display.textContent = actualNumber;
         
         console.log(previousNumber, "soy el anterior")
     };
