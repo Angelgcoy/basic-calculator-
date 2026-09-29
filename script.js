@@ -56,9 +56,10 @@ const topDisplay = document.querySelector("#top");
 const bottomDisplay = document.querySelector("#bottom")
 topDisplay.textContent = ""
 
-let previousNumber = "null" ;
+let previousNumber = "" ;
 let actualNumber = "" ;
 let selectedOperator = null;
+let result = false;
 
  //store number pressed in first variable
 function setValues(number) {
@@ -81,6 +82,7 @@ function setValues(number) {
 
 //store operator in variable
 function pressOperator(operator) {
+    if (previousNumber === "") return;
     
     const  operatorBtn = operator.textContent;
 
@@ -96,7 +98,7 @@ function pressOperator(operator) {
     topDisplay.textContent += selectedOperator;
 
     
-  }
+  };
   console.log(selectedOperator);
   
 }
