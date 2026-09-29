@@ -42,6 +42,7 @@ width: auto;
 
 .buttons {
   display: flex;
+  flex-direction: row-reverse;
 flex: 1;
 
 }

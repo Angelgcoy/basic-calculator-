@@ -91,15 +91,26 @@ function pressOperator(operator) {
 
 //store actualnumber in previousnumber and store it
 function secondNumber(number) {
-      
-    if (selectedOperator ) {
-        actualNumber += number.textContent;
-        topDisplay.textContent = actualNumber;
-        bottomDisplay.textContent = operate(previousNumber,actualNumber,selectedOperator)
+
+      const numberPressed = number.textContent
+
+    if (selectedOperator && !actualNumber ) {
+
+        actualNumber = numberPressed 
+        topDisplay.textContent += actualNumber
+        
+    }
+        
+        else if (selectedOperator && actualNumber) {
+        actualNumber += numberPressed;
+        topDisplay.textContent += numberPressed;
+
+        
         
         console.log(previousNumber, "soy el anterior")
-    };
-
+        }
+         bottomDisplay.textContent = operate(previousNumber,actualNumber,selectedOperator)
+   
 };
 
 
@@ -144,7 +155,9 @@ clearBtn.addEventListener("click", () => {
 deleteBtn.addEventListener("click", () => {
 
 topDisplay.textContent = topDisplay.textContent.slice(0, -1);
-actualNumber = topDisplay.textContent;
+actualNumber = topDisplay.textContent
+bottomDisplay.textContent = operate(previousNumber,actualNumber,selectedOperator)
+
 })
 
 
