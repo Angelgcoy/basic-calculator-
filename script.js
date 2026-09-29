@@ -52,9 +52,11 @@ const allLists = bothLists.flat()
 
 
 //add display content
-const display = document.querySelector("p");
+const topDisplay = document.querySelector("#top");
+const bottomDisplay = document.querySelector("#bottom")
+topDisplay.textContent = ""
 
-let previousNumber = "0" ;
+let previousNumber = null ;
 let actualNumber = "" ;
 let selectedOperator = null;
 
@@ -63,22 +65,28 @@ function pressNumber(number) {
     if (selectedOperator === null) {
 
     actualNumber += number.textContent;
-    display.textContent = actualNumber;
+    topDisplay.textContent = actualNumber;
     previousNumber = actualNumber;
 };
     }
 
 //store operator in variable
 function pressOperator(operator) {
-    if (actualNumber >= 0) {
-        
-    selectedOperator = operator.textContent;
-    display.textContent = selectedOperator;
     actualNumber = "";
+    const  operatorBtn = operator.textContent;
+
+    if (previousNumber && !selectedOperator ) {
+       
+
+    selectedOperator = operatorBtn;
+    topDisplay.textContent += selectedOperator;
     console.log(selectedOperator);
-    
- 
-};
+  }
+  else if (previousNumber && selectedOperator) { 
+    topDisplay.textContent = topDisplay.textContent.slice(0, -1);
+    selectedOperator = operatorBtn;
+    topDisplay.textContent += selectedOperator;
+  }
 }
 
 //store actualnumber in previousnumber and store it
@@ -86,7 +94,8 @@ function secondNumber(number) {
       
     if (selectedOperator ) {
         actualNumber += number.textContent;
-        display.textContent = actualNumber;
+        topDisplay.textContent = actualNumber;
+        bottomDisplay.textContent = operate(previousNumber,actualNumber,selectedOperator)
         
         console.log(previousNumber, "soy el anterior")
     };
@@ -94,7 +103,7 @@ function secondNumber(number) {
 };
 
 
-//first number click
+//set number click
 const setNumber = btnList.forEach(button => {
     button.addEventListener("click", () => {
         pressNumber(button)
@@ -118,7 +127,7 @@ console.log(operate)
 
 //result button 
 operateBtn.addEventListener("click", () => {
-    display.textContent = (operate(previousNumber,actualNumber,selectedOperator))
+    topDisplay.textContent = (operate(previousNumber,actualNumber,selectedOperator))
 
     
 })
@@ -126,15 +135,16 @@ operateBtn.addEventListener("click", () => {
 
 //undo and clear action
 clearBtn.addEventListener("click", () => {
-    display.textContent = "";
+    topDisplay.textContent = "";
     actualNumber = "";
     previousNumber = "";
     selectedOperator = null
+    bottomDisplay.textContent = ""
 })
 deleteBtn.addEventListener("click", () => {
 
-display.textContent = display.textContent.slice(0, -1);
-actualNumber = display.textContent;
+topDisplay.textContent = topDisplay.textContent.slice(0, -1);
+actualNumber = topDisplay.textContent;
 })
 
 
