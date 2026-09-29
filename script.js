@@ -56,70 +56,59 @@ const topDisplay = document.querySelector("#top");
 const bottomDisplay = document.querySelector("#bottom")
 topDisplay.textContent = ""
 
-let previousNumber = null ;
+let previousNumber = "null" ;
 let actualNumber = "" ;
 let selectedOperator = null;
 
  //store number pressed in first variable
-function pressNumber(number) {
-    if (selectedOperator === null) {
+function setValues(number) {
+    
+    let pressedNumber = number.textContent
 
-    actualNumber += number.textContent;
-    topDisplay.textContent = actualNumber;
-    previousNumber = actualNumber;
-};
+    if (  !selectedOperator){
+        previousNumber += pressedNumber;
+        topDisplay.textContent = previousNumber;
     }
+    else {
+        actualNumber += pressedNumber;
+        topDisplay.textContent += pressedNumber;
+
+        bottomDisplay.textContent = operate(previousNumber,actualNumber,selectedOperator);
+    }
+    
+};
+    
 
 //store operator in variable
 function pressOperator(operator) {
-    actualNumber = "";
+    
     const  operatorBtn = operator.textContent;
 
-    if (previousNumber && !selectedOperator ) {
-       
-
+    if (!selectedOperator ) {
     selectedOperator = operatorBtn;
     topDisplay.textContent += selectedOperator;
-    console.log(selectedOperator);
+    
   }
-  else if (previousNumber && selectedOperator) { 
+
+  else if (selectedOperator) { 
     topDisplay.textContent = topDisplay.textContent.slice(0, -1);
     selectedOperator = operatorBtn;
     topDisplay.textContent += selectedOperator;
+
+    
   }
+  console.log(selectedOperator);
+  
 }
 
-//store actualnumber in previousnumber and store it
-function secondNumber(number) {
-
-      const numberPressed = number.textContent
-
-    if (selectedOperator && !actualNumber ) {
-
-        actualNumber = numberPressed 
-        topDisplay.textContent += actualNumber
-        
-    }
-        
-        else if (selectedOperator && actualNumber) {
-        actualNumber += numberPressed;
-        topDisplay.textContent += numberPressed;
-
-        
-        
-        console.log(previousNumber, "soy el anterior")
-        }
-         bottomDisplay.textContent = operate(previousNumber,actualNumber,selectedOperator)
-   
-};
 
 
 //set number click
 const setNumber = btnList.forEach(button => {
     button.addEventListener("click", () => {
-        pressNumber(button)
-        secondNumber(button)
-        console.log(actualNumber, "am actual number")
+        setValues(button)
+        
+        console.log(previousNumber, "am the first values number")
     });
 });
 
@@ -153,12 +142,34 @@ clearBtn.addEventListener("click", () => {
     bottomDisplay.textContent = ""
 })
 deleteBtn.addEventListener("click", () => {
+if (actualNumber !== ""){
+    actualNumber = actualNumber.slice(0, -1);
 
-topDisplay.textContent = topDisplay.textContent.slice(0, -1);
-actualNumber = topDisplay.textContent
-bottomDisplay.textContent = operate(previousNumber,actualNumber,selectedOperator)
+    topDisplay.textContent = topDisplay.textContent.slice(0, -1);
+    if(actualNumber === "") {
+        bottomDisplay.textContent = operate(previousNumber,actualNumber,selectedOperator)
+    } else { 
+        bottomDisplay.textContent = operate(previousNumber,actualNumber,selectedOperator)
+    }
+    return 
+  }
+
+  if (selectedOperator !== null) {
+    selectedOperator = null
+    topDisplay.textContent = topDisplay.textContent.slice(0, -1)
+    if(!selectedOperator) {
+        bottomDisplay.textContent = "";
+    }
+    return
+  }
+  if (previousNumber !== "") {
+    previousNumber = previousNumber.slice(0, -1);
+    topDisplay.textContent = previousNumber;
+    return 
+  }
 
 })
+
 
 
 /*ya lo que es formular el primer numero, el operador, el segundo numero, que haga la operacion y que se muestre
@@ -170,4 +181,3 @@ el numero inicial debe ser 0 al momento de seleccionar clear o iniciar la pagina
 
 
 */
-
