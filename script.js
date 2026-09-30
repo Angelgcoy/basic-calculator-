@@ -1,4 +1,6 @@
 
+
+
 const add = (a,b) =>      { return a + b }
 const subtract = (a,b) => { return a - b}
 const multiply = (a,b) => { return a * b;}
@@ -9,15 +11,17 @@ const two = 2;
 
 //create a operate function which uses a operator and two numbers to execute
 function operate(a,b,operator) {
-    if (operator === "+") {      return add(Number(a), Number(b)); }
-    else if (operator === "-") { return subtract(a, b); }
+const numA = Number(a);
+const numB = Number(b);
+
+    if (operator === "+") { return add(numA, numB); }
+    else if (operator === "-") { return subtract(numA, numB); }
     else if (operator === "/") {
-        if (Number(b) === 0) {
-            return "nuh uh..."}
-            return a / b;
-        }
-    else if (operator === "*") { return multiply(a,b); }
-    else {return null}
+        if (numB === 0) { return "nuh uh..."; }
+        return divide(numA, numB);
+    }
+    else if (operator === "*") { return multiply(numA, numB); }
+    else { return null; }
 
 }
 
@@ -94,7 +98,7 @@ if (actualNumber !== "" && actualNumber !== "" && selectedOperator) {
     previousNumber = pendiente
     actualNumber = ""
     topDisplay.textContent +=selectedOperator
-    selectedOperator = operateBtn;
+    selectedOperator = operatorBtn;
 }
 
     if (previousNumber === "") return;
@@ -149,11 +153,13 @@ operateBtn.addEventListener("click", () => {
 
         topDisplay.textContent = result;
         bottomDisplay.textContent = ""
-    }
+    
+    
     previousNumber = String(result);
     actualNumber = "";
     selectedOperator = null;
     resultState = true;
+    }
 
 })
 
