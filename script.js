@@ -1,10 +1,4 @@
 
-/*crear funcion para sumar
-crear funcion para restar
-crear funcion para multiplicar
-crear funcion para dividir
-*/
-
 const add = (a,b) =>      { return a + b }
 const subtract = (a,b) => { return a - b}
 const multiply = (a,b) => { return a * b;}
@@ -15,10 +9,14 @@ const two = 2;
 
 //create a operate function which uses a operator and two numbers to execute
 function operate(a,b,operator) {
-    if (operator === "+") {      return Number(a) + Number(b); }
-    else if (operator === "-") { return a - b; }
-    else if (operator === "/") { return b === 0 ? "error" : a / b; }
-    else if (operator === "*") { return a * b; }
+    if (operator === "+") {      return add(Number(a), Number(b)); }
+    else if (operator === "-") { return subtract(a, b); }
+    else if (operator === "/") {
+        if (Number(b) === 0) {
+            return "nuh uh..."}
+            return a / b;
+        }
+    else if (operator === "*") { return multiply(a,b); }
     else {return null}
 
 }
@@ -59,12 +57,19 @@ topDisplay.textContent = ""
 let previousNumber = "" ;
 let actualNumber = "" ;
 let selectedOperator = null;
-let result = false;
+let resultState = false;
 
  //store number pressed in first variable
 function setValues(number) {
     
     let pressedNumber = number.textContent
+    
+
+    if(resultState && !selectedOperator) {
+        previousNumber = "";
+        topDisplay.textContent = "";
+        resultState = false;
+    }
 
     if (  !selectedOperator){
         previousNumber += pressedNumber;
@@ -82,9 +87,20 @@ function setValues(number) {
 
 //store operator in variable
 function pressOperator(operator) {
+
+const  operatorBtn = operator.textContent;
+
+if (actualNumber !== "" && actualNumber !== "" && selectedOperator) {
+    const pendiente = operate(previousNumber,actualNumber,selectedOperator);
+    previousNumber = pendiente
+    actualNumber = ""
+    topDisplay.textContent +=selectedOperator
+    selectedOperator = operateBtn;
+}
+
     if (previousNumber === "") return;
     
-    const  operatorBtn = operator.textContent;
+    
 
     if (!selectedOperator ) {
     selectedOperator = operatorBtn;
@@ -129,9 +145,17 @@ console.log(operate)
 
 //result button 
 operateBtn.addEventListener("click", () => {
-    topDisplay.textContent = (operate(previousNumber,actualNumber,selectedOperator))
+    if (previousNumber !== "" && actualNumber !== "" && selectedOperator !== null) {
+        const result = operate(previousNumber,actualNumber,selectedOperator);
 
-    
+        topDisplay.textContent = result;
+        bottomDisplay.textContent = ""
+    }
+    previousNumber = String(result);
+    actualNumber = "";
+    selectedOperator = null;
+    resultState = true;
+
 })
 
 
@@ -143,6 +167,7 @@ clearBtn.addEventListener("click", () => {
     selectedOperator = null
     bottomDisplay.textContent = ""
 })
+
 deleteBtn.addEventListener("click", () => {
 if (actualNumber !== ""){
     actualNumber = actualNumber.slice(0, -1);
@@ -174,12 +199,3 @@ if (actualNumber !== ""){
 
 
 
-/*ya lo que es formular el primer numero, el operador, el segundo numero, que haga la operacion y que se muestre
-en pantalla esta listo. ahora necesito es hacer que no se rompa por no usarlo bien
-
--al momento de presionar resultado, si presiono un numero el resultado debe volerse el previousNumber
-no se debe poder seleccionar una operacion si no se ha seleccionado numero inicial
-el numero inicial debe ser 0 al momento de seleccionar clear o iniciar la pagina
-
-
-*/
