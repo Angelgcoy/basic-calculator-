@@ -81,7 +81,6 @@ function setValues(number) {
 
         bottomDisplay.textContent = operate(previousNumber,actualNumber,selectedOperator);
     }
-    
 };
     
 
