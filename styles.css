@@ -1,5 +1,6 @@
 body {
     box-sizing: border-box;
+    background-color: #D75F0F;
 
 }
 h1 {
@@ -14,31 +15,44 @@ h1 {
     display:flex;
     flex-direction: column;
     border-radius: 8px;
-    background-color: #696969; 
+    background-color: #252528; 
 }
 .display {
     display: flex;
-    width: auto;
+    width: 220px;
     height: 60px;
     background-color: #64923F;
     border-radius: 8px;
     margin: 5px;
     flex-direction: column;
+    
 }
 
 p {
-    display: flex;
-margin-top: 5px;
-margin-right: 5px;
-justify-content: end;
-width: auto;
-}
- 
-.container .display .big-display{
-    font-size: 25px;
-    margin-bottom: 5px;
+  display: flex;
+  margin: 0; 
+  padding-right: 5px; 
+  justify-content: end;
+  align-items: center; 
+  width: auto;
+  white-space: nowrap;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
+
+.small-display {
+  font-size: 12px; 
+}
+
+
+.container .display .big-display {
+  font-size: 25px;
+  margin: 0;       
+  padding-bottom: 0; 
+}
 
 .buttons {
   display: flex;
@@ -57,6 +71,7 @@ gap:2px
     flex:1 0  25%;
     flex-direction:column;
     margin: 2px;
+    background-color: #E0BA24;
     
 }
 
@@ -69,10 +84,17 @@ gap:2px
 }
 .action-buttons button {
     flex:1;
-    background-color:#F19C13;
+    background-color:#E05C24;
 }
 
 button {
     border-radius: 4px;
-    border: none
+    border: none;
+    
+    
+}
+
+button:hover{
+    filter: brightness(85%);
+    cursor: pointer;
 }
